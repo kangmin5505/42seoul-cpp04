@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 21:50:44 by kangkim           #+#    #+#             */
-/*   Updated: 2022/04/04 23:10:31 by kangkim          ###   ########.fr       */
+/*   Updated: 2022/04/04 23:21:32 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 class Cat : public Animal {
 public:
   Cat(void);
-  ~Cat(void);
+  virtual ~Cat(void);
 
-  void makeSound(void) const;
+  virtual void makeSound(void) const;
 
 private:
   Cat(const Cat &rhs);
