@@ -22,9 +22,9 @@ public:
   virtual ~Animal(void);
   Animal &operator=(const Animal &rhs);
 
-  virtual void makeSound(void) const ;
+  virtual void makeSound(void) const;
 
-  const std::string &getType(void) const ;
+  const std::string &getType(void) const;
 
 protected:
   std::string type_;
