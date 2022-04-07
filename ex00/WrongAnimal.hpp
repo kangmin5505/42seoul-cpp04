@@ -18,18 +18,16 @@
 class WrongAnimal {
 public:
   WrongAnimal(void);
+  WrongAnimal(const WrongAnimal &rhs);
   ~WrongAnimal(void);
+  WrongAnimal &operator=(const WrongAnimal &rhs);
 
-  void makeSound(void) const ;
+  void makeSound(void) const;
 
-  const std::string &getType(void) const ;
+  const std::string &getType(void) const;
 
 protected:
   std::string type_;
-
-private:
-  WrongAnimal(const WrongAnimal &rhs);
-  WrongAnimal &operator=(const WrongAnimal &rhs);
 };
 
 #endif

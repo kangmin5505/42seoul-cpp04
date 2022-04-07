@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 21:41:22 by kangkim           #+#    #+#             */
-/*   Updated: 2022/04/04 23:09:02 by kangkim          ###   ########.fr       */
+/*   Updated: 2022/04/07 10:40:28 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,16 @@
 class Animal {
 public:
   Animal(void);
+  Animal(const Animal &rhs);
   virtual ~Animal(void);
+  Animal &operator=(const Animal &rhs);
 
-  virtual void makeSound(void) const ;
+  virtual void makeSound(void) const;
 
-  const std::string &getType(void) const ;
+  const std::string &getType(void) const;
 
 protected:
   std::string type_;
-
-private:
-  Animal(const Animal &rhs);
-  Animal &operator=(const Animal &rhs);
 };
 
 #endif
