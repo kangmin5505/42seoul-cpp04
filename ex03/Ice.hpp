@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 14:36:13 by kangkim           #+#    #+#             */
-/*   Updated: 2022/04/08 15:02:41 by kangkim          ###   ########.fr       */
+/*   Updated: 2022/04/08 22:42:39 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 class Ice : public AMateria {
 public:
     Ice();
-    Ice(const Ice &origin);
     ~Ice();
-    Ice &operator=(const Ice &rhs);
 
     virtual AMateria *clone() const;
     virtual void use(ICharacter &target);
+private:
+    Ice(const Ice &origin);
+    Ice &operator=(const Ice &rhs);
+
 };
 
 #endif

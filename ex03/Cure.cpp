@@ -6,21 +6,18 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 15:00:46 by kangkim           #+#    #+#             */
-/*   Updated: 2022/04/08 19:07:42 by kangkim          ###   ########.fr       */
+/*   Updated: 2022/04/08 22:50:48 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
+#include "Character.hpp"
 
 #include <iostream>
 
 Cure::Cure() : AMateria("cure") {}
 
-Cure::Cure(const Cure &origin) : AMateria("cure") {}
-
 Cure::~Cure() {}
-
-Cure &Cure::operator=(const Cure &rhs) {}
 
 AMateria *Cure::clone() const {
     return new Cure;

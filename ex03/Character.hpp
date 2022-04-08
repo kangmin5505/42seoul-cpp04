@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 15:22:27 by kangkim           #+#    #+#             */
-/*   Updated: 2022/04/08 16:18:27 by kangkim          ###   ########.fr       */
+/*   Updated: 2022/04/09 00:52:32 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ public:
     Character();
     Character(const Character &origin);
     Character(const std::string &name);
-    ~Character();
+    virtual ~Character();
     Character &operator=(const Character &rhs);
 
     std::string const &getName() const;
@@ -34,8 +34,8 @@ private:
     static const int kMaxSlot = 4;
 
     std::string name_;
-    AMateria *slots_[kMaxSlot];
-    int slot_cnt_;
+    AMateria *inventory_[kMaxSlot];
+    int inventory_cnt_;
 };
 
 #endif
