@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 21:51:38 by kangkim           #+#    #+#             */
-/*   Updated: 2022/04/09 01:02:26 by kangkim          ###   ########.fr       */
+/*   Updated: 2022/04/09 01:50:29 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ AMateria *MateriaSource::createMateria(std::string const &type) {
   }
   else if (create_cnt_ >= kMaxCreateMateria) {
     std::cout << "Can't create materia. Because materia source is empty" << std::endl;
+    return NULL;
+  }
+  else if (learn_cnt_ == 0) {
+    std::cout << "Must learn material" << std::endl;
     return NULL;
   }
 

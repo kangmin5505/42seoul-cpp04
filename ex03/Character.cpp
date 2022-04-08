@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 15:22:00 by kangkim           #+#    #+#             */
-/*   Updated: 2022/04/09 01:01:16 by kangkim          ###   ########.fr       */
+/*   Updated: 2022/04/09 01:55:59 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,12 @@ Character::Character(const Character &origin) {
         inventory_cnt_ = origin.inventory_cnt_;
         name_ = origin.name_;
 
-        for (int i = 0; i < inventory_cnt_; i++)
-            inventory_[i] = origin.inventory_[i]->clone();
+        for (int i = 0; i < kMaxSlot; i++) {
+            if (origin.inventory_[i])
+                inventory_[i] = origin.inventory_[i]->clone();
+            else
+                inventory_[i] = NULL;
+        }
     }
 }
 
@@ -46,8 +50,10 @@ Character &Character::operator=(const Character &rhs) {
         inventory_cnt_ = rhs.inventory_cnt_;
         name_ = rhs.name_;
 
-        for (int i = 0; i < inventory_cnt_; i++)
-            inventory_[i] = rhs.inventory_[i]->clone();
+        for (int i = 0; i < kMaxSlot; i++) {
+            if (rhs.inventory_[i])
+                inventory_[i] = rhs.inventory_[i]->clone();
+        }
     }
     return *this;
 }
@@ -68,7 +74,7 @@ void Character::equip(AMateria *m) {
 
 void Character::unequip(int idx) {
     if (inventory_cnt_ == 0)
-        // std::cout << name_ << "doesn't have material." << std::endl;
+        // std::cout << name_ << " doesn't have material." << std::endl;
         ;
     else if (idx >= kMaxSlot || idx < 0)
         std::cout << "range out of idx" << std::endl;

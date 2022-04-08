@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 15:15:20 by kangkim           #+#    #+#             */
-/*   Updated: 2022/04/09 01:02:45 by kangkim          ###   ########.fr       */
+/*   Updated: 2022/04/09 01:58:21 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,14 @@ int main()
     ICharacter* bob2 = new Character("bob");
     Character c("copy_test");
 
+    m1->learnMateria(new Ice);
     temp = m1->createMateria("ice");
     c.equip(temp);
     temp = m1->createMateria("ice");
     c.equip(temp);
 
     Character c2(c);
-    Character c3;
+    Character c3(c);
 
     c3 = c2;
 
