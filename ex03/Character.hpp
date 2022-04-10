@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 15:22:27 by kangkim           #+#    #+#             */
-/*   Updated: 2022/04/09 00:52:32 by kangkim          ###   ########.fr       */
+/*   Updated: 2022/04/10 20:32:16 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,14 @@ public:
 
 private:
     static const int kMaxSlot = 4;
+    static const int kMaxUnequip = 4;
 
     std::string name_;
     AMateria *inventory_[kMaxSlot];
+    AMateria *unequip_collector_[kMaxUnequip];
+
     int inventory_cnt_;
+    int unequip_cnt_;
 };
 
 #endif

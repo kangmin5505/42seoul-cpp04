@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 15:22:00 by kangkim           #+#    #+#             */
-/*   Updated: 2022/04/09 01:55:59 by kangkim          ###   ########.fr       */
+/*   Updated: 2022/04/10 20:39:25 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,28 @@
 #include <iostream>
 
 Character::Character()
-    : name_(""), inventory_cnt_(0)
+    : name_(""), inventory_cnt_(0), unequip_cnt_(0)
 {
     for (int i = 0; i < kMaxSlot; i++)
         inventory_[i] = NULL;
+    for (int i = 0; i < kMaxUnequip; i++)
+        unequip_collector_[i] = NULL;
 }
 
 Character::Character(const Character &origin) {
-    if (this != &origin) {
-        inventory_cnt_ = origin.inventory_cnt_;
-        name_ = origin.name_;
+    inventory_cnt_ = origin.inventory_cnt_;
+    name_ = origin.name_;
+    unequip_cnt_ = 0;
 
-        for (int i = 0; i < kMaxSlot; i++) {
-            if (origin.inventory_[i])
-                inventory_[i] = origin.inventory_[i]->clone();
-            else
-                inventory_[i] = NULL;
+    for (int i = 0; i < kMaxSlot; i++) {
+        if (origin.inventory_[i]) {
+            inventory_[i] = origin.inventory_[i]->clone();
         }
+        else
+            inventory_[i] = NULL;
     }
+    for (int i = 0; i < kMaxUnequip; i++)
+        unequip_collector_[i] = NULL;
 }
 
 Character::Character(const std::string &name)
@@ -41,19 +45,37 @@ Character::Character(const std::string &name)
 {
     for (int i = 0; i < kMaxSlot; i++)
         inventory_[i] = NULL;
+    for (int i = 0; i < kMaxUnequip; i++)
+        unequip_collector_[i] = NULL;
 }
 
-Character::~Character() {}
+Character::~Character() {
+    for (int i = 0; i < inventory_cnt_; i++)
+        delete inventory_[i];
+    for (int i = 0; i < unequip_cnt_; i++)
+        delete unequip_collector_[i];
+}
 
 Character &Character::operator=(const Character &rhs) {
-    if (this != &rhs) {
-        inventory_cnt_ = rhs.inventory_cnt_;
-        name_ = rhs.name_;
+    if (this == &rhs)
+        return *this;
 
-        for (int i = 0; i < kMaxSlot; i++) {
-            if (rhs.inventory_[i])
-                inventory_[i] = rhs.inventory_[i]->clone();
-        }
+    for (int i = 0; i < kMaxSlot; i++) {
+        delete inventory_[i];
+        inventory_[i] = NULL;
+    }
+    for (int i = 0; i < kMaxUnequip; i++) {
+        delete unequip_collector_[i];
+        unequip_collector_[i] = NULL;
+    }
+
+    inventory_cnt_ = rhs.inventory_cnt_;
+    name_ = rhs.name_;
+    unequip_cnt_ = 0;
+
+    for (int i = 0; i < kMaxSlot; i++) {
+        if (rhs.inventory_[i])
+            inventory_[i] = rhs.inventory_[i]->clone();
     }
     return *this;
 }
@@ -74,23 +96,25 @@ void Character::equip(AMateria *m) {
 
 void Character::unequip(int idx) {
     if (inventory_cnt_ == 0)
-        // std::cout << name_ << " doesn't have material." << std::endl;
-        ;
+        std::cout << name_ << " doesn't have material." << std::endl;
     else if (idx >= kMaxSlot || idx < 0)
         std::cout << "range out of idx" << std::endl;
     else if (inventory_[idx] == NULL)
         std::cout << "Inventory of idx is empty" << std::endl;
+    else if (unequip_cnt_ == kMaxUnequip)
+        std::cout << "Can't unequip more " << kMaxUnequip << "." << std::endl;
     else {
         std::cout << name_ << " drops " << inventory_[idx]->getType() << " material." << std::endl;
+        unequip_collector_[unequip_cnt_] = inventory_[idx];
+        unequip_cnt_++;
         inventory_[idx] = NULL;
         inventory_cnt_--;
     }
 }
 
 void Character::use(int idx, ICharacter &target) {
-    if (inventory_cnt_ == 0)
-        // std::cout << name_ << " doesn't have material." << std::endl;
-        ;
+    if (inventory_cnt_ == 0 || not inventory_[idx])
+        std::cout << name_ << " doesn't have material." << std::endl;
     else if (idx >= kMaxSlot || idx < 0)
         std::cout << "range out of idx" << std::endl;
     else

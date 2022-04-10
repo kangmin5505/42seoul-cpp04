@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 21:49:34 by kangkim           #+#    #+#             */
-/*   Updated: 2022/04/09 00:55:26 by kangkim          ###   ########.fr       */
+/*   Updated: 2022/04/09 23:31:27 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ public:
 
 private:
   static const int kMaxCreateMateria = 4;
-  static const int kMaxSlot = 4;
+  static const int kMaxLearn = 4;
 
   AMateria *create_slot_[kMaxCreateMateria];
-  AMateria *learn_slot_[kMaxSlot];
+  AMateria *learn_slot_[kMaxLearn];
   int create_cnt_;
   int learn_cnt_;
 

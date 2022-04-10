@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 15:15:20 by kangkim           #+#    #+#             */
-/*   Updated: 2022/04/09 01:58:21 by kangkim          ###   ########.fr       */
+/*   Updated: 2022/04/10 20:56:17 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 
 int main()
 {
-    std::cout << "===== Basic test =====" << std::endl;
-
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
@@ -41,76 +39,63 @@ int main()
     delete bob;
     delete me;
     delete src;
-    std::cout << std::endl;
+    // std::cout << std::endl;
 
-    std::cout << "===== Inventory test =====" << std::endl;
+    // std::cout << "===== Unequip test =====" << std::endl;
 
-    IMateriaSource *m = new MateriaSource;
-    m->learnMateria(new Ice());
-    m->learnMateria(new Cure());
-    m->learnMateria(new Ice());
-    m->learnMateria(new Cure());
-    m->learnMateria(new Ice()); // error : leanMateria is full
+    // IMateriaSource *src1 = new MateriaSource();
+    // src1->learnMateria(new Ice());
+    // src1->learnMateria(new Cure());
+    // ICharacter *kang = new Character("kang");
 
+    // AMateria *temp;
+    // temp = src1->createMateria("ice");
+    // kang->equip(temp);
+    // temp = src1->createMateria("cure");
+    // kang->equip(temp);
 
-    ICharacter *kang = new Character("kang");
-    AMateria *temp;
-    ICharacter* bob1 = new Character("bob");
-    kang->use(0, *bob1); // don't do anything
-    temp = m->createMateria("wrong value"); // error : wrong type
-    kang->equip(temp); // error : AMateria is NULL
-    temp = m->createMateria("ice");
-    kang->equip(temp);
-    temp = m->createMateria("cure");
-    kang->equip(temp);
-    temp = m->createMateria("cure");
-    kang->equip(temp);
-    temp = m->createMateria("ice");
-    kang->equip(temp);
-    temp = m->createMateria("ice"); // error : Can't create material
-    kang->equip(temp); // error : AMateria is NULL
-    kang->unequip(0);
-    kang->unequip(1);
-    kang->unequip(0); // error : Inventory of idx is empty
-    kang->unequip(2);
-    kang->unequip(3);
-    kang->unequip(4); // don't do anything
+    // kang->unequip(0);
+    // kang->unequip(1);
+
+    // delete src1;
+    // delete kang;
+    // std::cout << std::endl;
 
 
-    kang->use(0, *bob1);
-    kang->use(1, *bob1);
-    kang->use(2, *bob1);
-    kang->use(3, *bob1);
-    kang->use(4, *bob1); // error : range out of idx
+    // std::cout << "===== Deep copy test =====" << std::endl;
 
-    delete m;
-    delete bob1;
-    delete kang;
-    std::cout << std::endl;
+    // IMateriaSource *src2 = new MateriaSource();
+    // src2->learnMateria(new Ice());
+    // src2->learnMateria(new Cure());
+    // Character kim("kim");
 
-    std::cout << "===== Deep copy test =====" << std::endl;
-    IMateriaSource *m1 = new MateriaSource;
-    ICharacter* bob2 = new Character("bob");
-    Character c("copy_test");
+    // AMateria *temp2;
+    // temp2 = src2->createMateria("ice");
+    // kim.equip(temp2);
+    // temp2 = src2->createMateria("cure");
+    // kim.equip(temp2);
 
-    m1->learnMateria(new Ice);
-    temp = m1->createMateria("ice");
-    c.equip(temp);
-    temp = m1->createMateria("ice");
-    c.equip(temp);
+    // Character deep1(kim);
+    // Character deep2;
 
-    Character c2(c);
-    Character c3(c);
+    // deep2 = deep1;
 
-    c3 = c2;
+    // kim.unequip(0);
 
-    c2.use(0, *bob2);
-    c3.use(1, *bob2);
+    // delete src2;
+    // std::cout << std::endl;
 
-    delete m1;
-    delete bob2;
-    std::cout << std::endl;
+    // std::cout << "===== Extra test =====" << std::endl;
 
+    // IMateriaSource *src3 = new MateriaSource();
+    // Character kangkim("kangkim");
+
+    // AMateria *temp3;
+    // temp3 = src3->createMateria("wrong value");
+    // kangkim.equip(temp3);
+
+    // delete src3;
+    
     // system("leaks main"); // check memory
     return 0;
 }
