@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 15:22:00 by kangkim           #+#    #+#             */
-/*   Updated: 2022/04/10 20:39:25 by kangkim          ###   ########.fr       */
+/*   Updated: 2022/04/11 17:30:10 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ Character::Character(const Character &origin) {
 }
 
 Character::Character(const std::string &name)
-    : name_(name), inventory_cnt_(0)
+    : name_(name), inventory_cnt_(0), unequip_cnt_(0)
 {
     for (int i = 0; i < kMaxSlot; i++)
         inventory_[i] = NULL;
